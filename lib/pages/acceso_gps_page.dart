@@ -41,6 +41,7 @@ class _AccesoGpsPageState extends State<AccesoGpsPage> {
       case PermissionStatus.granted:
         Navigator.pushReplacementNamed(context, 'mapa');
         break;
+      case PermissionStatus.undetermined:
       case PermissionStatus.denied:
       case PermissionStatus.restricted:
       case PermissionStatus.limited:
