@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mapas_app/helpers/helpers.dart';
+import 'package:mapas_app/pages/acceso_gps_page.dart';
 import 'package:mapas_app/pages/mapa_page.dart';
 
 class LoadingPage extends StatelessWidget {
@@ -24,7 +25,7 @@ class LoadingPage extends StatelessWidget {
     Future.delayed(Duration(milliseconds: 1000), () {
     Navigator.pushReplacement(
       context,
-      navegarMapaFedeIn(context, MapaPage()),
+      navegarMapaFedeIn(context, AccesoGpsPage()),
     );
   });
   }
