@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart' as Geolocator;
 import 'package:mapas_app/helpers/helpers.dart';
