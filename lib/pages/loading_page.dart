@@ -23,10 +23,11 @@ class LoadingPage extends StatelessWidget {
     //verificar si hay permiso del gps
     //verificar si el gps esta activo
     Future.delayed(Duration(milliseconds: 1000), () {
-    Navigator.pushReplacement(
+      print('Loading Page');
+    /* Navigator.pushReplacement(
       context,
       navegarMapaFedeIn(context, AccesoGpsPage()),
-    );
+    ); */
   });
   }
 }
