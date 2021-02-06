@@ -11,6 +11,7 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
   
   MapaBloc() : super( new MapaState());
 
+  // ignore: unused_field
   GoogleMapController _mapController;
 
   void initMap(GoogleMapController controller){
