@@ -46,6 +46,8 @@ class _MapaPageState extends State<MapaPage> {
     if(!state.existeUbicacion) return Center(child: Text('Ubicando...'));
 
     final mapaBloc = BlocProvider.of<MapaBloc>(context);
+
+    mapaBloc.add(OnNuevaUbicacion(state.ubicacion));
     //si tengo una ubicacion conicidad regreso esto
 
     final cameraPosition = new CameraPosition(
@@ -57,6 +59,7 @@ class _MapaPageState extends State<MapaPage> {
       myLocationEnabled: true,
       myLocationButtonEnabled: false,
       onMapCreated: mapaBloc.initMap,
+      //polylines: ,
     );
   }
 }

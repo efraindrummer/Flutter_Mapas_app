@@ -38,6 +38,8 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
   Stream<MapaState> mapEventToState( MapaEvent event ) async* {
     if(event is OnMapaListo){
       yield state.copyWith(mapaListo: true);
+    }else if(event is OnNuevaUbicacion){
+      print('Nueva ubicacion: ${event.ubicacion}');
     }
   }
 }
