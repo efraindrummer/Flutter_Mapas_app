@@ -13,8 +13,14 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
   
   MapaBloc() : super( new MapaState());
 
-  // ignore: unused_field
+  //controlador del mapa
   GoogleMapController _mapController;
+
+  //polylines
+  Polyline _miRuta = new Polyline(
+    polylineId: PolylineId('mi_ruta'),
+    width: 4
+  );
 
   void initMap(GoogleMapController controller){
 
@@ -39,7 +45,13 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     if(event is OnMapaListo){
       yield state.copyWith(mapaListo: true);
     }else if(event is OnNuevaUbicacion){
-      print('Nueva ubicacion: ${event.ubicacion}');
+      List<LatLng> points = [ ...this._miRuta.points, event.ubicacion];
+      this._miRuta = this._miRuta.copyWith(pointsParam: points);
+
+      final currentPolylines = state.polylines;
+      currentPolylines['mi_ruta'] = this._miRuta;
+
+      yield state.copyWith(polylines: currentPolylines);
     }
   }
 }

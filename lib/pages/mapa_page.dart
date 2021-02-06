@@ -59,7 +59,7 @@ class _MapaPageState extends State<MapaPage> {
       myLocationEnabled: true,
       myLocationButtonEnabled: false,
       onMapCreated: mapaBloc.initMap,
-      //polylines: ,
+      polylines: mapaBloc.state.polylines.values.toSet(),
     );
   }
 }

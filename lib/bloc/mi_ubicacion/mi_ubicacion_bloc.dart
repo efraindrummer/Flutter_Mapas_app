@@ -35,7 +35,6 @@ class MiUbicacionBloc extends Bloc<MiUbicacionEvent, MiUbicacionState> {
   Stream<MiUbicacionState> mapEventToState( MiUbicacionEvent event ) async* {
     //emitir nuevos estados
     if(event is OnUbicacionCambio){
-      print(event);
       yield state.copyWith(
         existeUbicacion: true,
         ubicacion: event.ubicacion
