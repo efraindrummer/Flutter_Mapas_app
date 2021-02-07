@@ -1,7 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:mapas_app/models/search_result.dart';
 
-class SearchDestination extends SearchDelegate {
+class SearchDestination extends SearchDelegate<SearchResult> {
 
   @override
   final String searchFieldLabel;
@@ -21,10 +22,9 @@ class SearchDestination extends SearchDelegate {
 
   @override
   Widget buildLeading(BuildContext context) {
-    //retornar algo
     return IconButton(
       icon: Icon(Icons.arrow_back_ios),
-      onPressed: () => this.close(context, null),
+      onPressed: () => this.close(context, SearchResult(cancelo: true)),
     );
   }
 
@@ -41,9 +41,7 @@ class SearchDestination extends SearchDelegate {
         leading: Icon(Icons.location_on),
         title: Text('Coloca la ubicacion manualmente'),
         onTap: (){
-          //retornar algo
-          print('Manualmente');
-          this.close(context, null);
+          this.close(context, SearchResult(cancelo: false, manual: true));
         },
       )
     ],
