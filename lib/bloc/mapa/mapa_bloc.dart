@@ -41,7 +41,7 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     final cameraUpdate = CameraUpdate.newLatLng(destino);
     this._mapController?.animateCamera(cameraUpdate);
   }
-
+  //pk.eyJ1IjoiZWZyYWluZHJ1bW1lciIsImEiOiJja2t2anByYmMxM2owMnduMHcybnFnemp4In0.AgMSElyiyQJ-pQm8WHe4CA
   @override
   Stream<MapaState> mapEventToState( MapaEvent event ) async* {
 
@@ -58,8 +58,8 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
       yield* _onSeguirUbicacion(event);
 
     }else if(event is OnMovioMapa){
-      print(event);
       yield state.copyWith(ubicacionCentral: event.centroMapa);
+      
     }
   }
 
