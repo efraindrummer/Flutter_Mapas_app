@@ -38,6 +38,8 @@ class _MapaPageState extends State<MapaPage> {
             top: 15,
             child: SearchBar()
           ),
+          
+          MarcadorManual()
         ],
       ),
 

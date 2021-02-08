@@ -9,3 +9,4 @@ part 'btn_ubicacion.dart';
 part 'btn_mi_ruta.dart';
 part 'btn_seguir_ubicacion.dart';
 part 'searchbar.dart';
+part 'marcador_manual.dart';

@@ -42,6 +42,10 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     this._mapController?.animateCamera(cameraUpdate);
   }
   //pk.eyJ1IjoiZWZyYWluZHJ1bW1lciIsImEiOiJja2t2anByYmMxM2owMnduMHcybnFnemp4In0.AgMSElyiyQJ-pQm8WHe4CA
+
+  /* 
+  https://api.mapbox.com/geocoding/v5/mapbox.places/-91.81839813793664%2C18.64242146413602.json?access_token=pk.eyJ1Ijoic2VhcmNoLW1hY2hpbmUtdXNlci0xIiwiYSI6ImNrN2Y1Nmp4YjB3aG4zZ253YnJoY21kbzkifQ.JM5ZeqwEEm-Tonrk5wOOMw&cachebuster=1612727017559&autocomplete=true&proximity=-91.81839813793664%2C18.64242146413602&language=es
+   */
   @override
   Stream<MapaState> mapEventToState( MapaEvent event ) async* {
 
