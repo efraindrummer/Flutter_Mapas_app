@@ -80,6 +80,8 @@ class _BuildMarcadorManual extends StatelessWidget {
 
   void calcularDestino(BuildContext context) async {
 
+    calculandoAlerta(context);
+
     final trafficService = new TrafficService();
     final mapaBloc = BlocProvider.of<MapaBloc>(context);
     final inicio = BlocProvider.of<MiUbicacionBloc>(context).state.ubicacion;
@@ -98,5 +100,10 @@ class _BuildMarcadorManual extends StatelessWidget {
     ).toList();
 
     mapaBloc.add(OnCrearRutaInicioDestino(rutaCoordenadas, distancia, duracion));
+
+    Navigator.of(context).pop();
+
+    //confirmar destino, marcador, y boton de regresar
+    BlocProvider.of<BusquedaBloc>(context).add(OnDesactivarMarcadorManual());
   }
 }
