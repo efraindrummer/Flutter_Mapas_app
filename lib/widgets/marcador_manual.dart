@@ -81,8 +81,9 @@ class _BuildMarcadorManual extends StatelessWidget {
   void calcularDestino(BuildContext context) async {
 
     final trafficService = new TrafficService();
+    final mapaBloc = BlocProvider.of<MapaBloc>(context);
     final inicio = BlocProvider.of<MiUbicacionBloc>(context).state.ubicacion;
-    final destino = BlocProvider.of<MapaBloc>(context).state.ubicacionCentral;
+    final destino = mapaBloc.state.ubicacionCentral;
 
     final trafficResponse = await trafficService.getCoordsInicioYDestino(inicio, destino);
 
@@ -92,6 +93,10 @@ class _BuildMarcadorManual extends StatelessWidget {
 
     //decodificar los puntos del Geometrie
     final points = Poly.Polyline.Decode(encodedString: geometry, precision: 6).decodedCoords;
-    final temp = points;
+    final List<LatLng> rutaCoordenadas = points.map(
+      (point) => LatLng(point[0], point[1])
+    ).toList();
+
+    mapaBloc.add(OnCrearRutaInicioDestino(rutaCoordenadas, distancia, duracion));
   }
 }
