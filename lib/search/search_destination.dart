@@ -96,7 +96,15 @@ class SearchDestination extends SearchDelegate<SearchResult> {
               title: Text(lugar.textEs),
               subtitle: Text(lugar.placeNameEs),
               onTap: (){
-                print(lugar);
+                
+                this.close(context, SearchResult(
+                  cancelo: false,
+                  manual: false,
+                  position: LatLng(lugar.center[1], lugar.center[0]),
+                  nombreDestino: lugar.textEs,
+                  descripcion: lugar.placeNameEs 
+                ));
+
               },
             );
           },
