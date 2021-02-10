@@ -12,8 +12,9 @@ class SearchDestination extends SearchDelegate<SearchResult> {
   final String searchFieldLabel;
   final TrafficService _trafficService;
   final LatLng proximidad;
+  final List<SearchResult> historial;
   
-  SearchDestination(this.proximidad) : this.searchFieldLabel = 'Buscar...', this._trafficService = new TrafficService();
+  SearchDestination(this.proximidad, this.historial) : this.searchFieldLabel = 'Buscar...', this._trafficService = new TrafficService();
   
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -52,7 +53,16 @@ class SearchDestination extends SearchDelegate<SearchResult> {
             onTap: (){
               this.close(context, SearchResult(cancelo: false, manual: true));
             },
-          )
+          ),
+
+          ...this.historial.map((result) => ListTile(
+            leading: Icon(Icons.history),
+            title: Text(result.nombreDestino),
+            subtitle: Text(result.descripcion),
+            onTap: (){
+              this.close(context, result);
+            },
+          )),
         ],
       );
     }
