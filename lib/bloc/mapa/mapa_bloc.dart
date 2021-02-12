@@ -125,7 +125,8 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     //icono de inicio
     //final iconInicio = await getAssetImageMarker();
     final iconInicio = await getMarkerInicioIcon(event.duracion.toInt());
-    final iconoDestino = await getNetworkImageMarker();
+    //final iconoDestino = await getNetworkImageMarker();
+    final iconoDestino = await getMarkerDestinoIcon(event.nombreDestino, event.distancia);
 
     //marcadores
     final markerInicio = new Marker(
@@ -144,6 +145,7 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     kilometros = kilometros / 100;
 
     final markerDestino = new Marker(
+      anchor: Offset(0.0, 1.0),
       markerId: MarkerId('destino'),
       position: event.rutasCoordenadas[event.rutasCoordenadas.length - 1],
       icon: iconoDestino,
