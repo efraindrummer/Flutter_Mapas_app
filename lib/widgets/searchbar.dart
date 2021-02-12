@@ -81,7 +81,9 @@ class SearchBar extends StatelessWidget {
     final distancia = drivingResponse.routes[0].distance;
     final points = Poly.Polyline.Decode(encodedString: geometry, precision: 6);
     final List<LatLng> rutaCoordenadas = points.decodedCoords.map((point) => LatLng(point[0], point[1])).toList();
-    mapaBloc.add(OnCrearRutaInicioDestino(rutaCoordenadas, distancia, duracion));
+    
+    //Arrglar
+    //mapaBloc.add(OnCrearRutaInicioDestino(rutaCoordenadas, distancia, duracion));
 
     Navigator.of(context).pop();
 
