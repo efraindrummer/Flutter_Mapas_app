@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart' show Colors;
+import 'package:flutter/material.dart' show Colors, Offset;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mapas_app/helpers/helpers.dart';
 import 'package:mapas_app/themes/uber_map_theme.dart';
@@ -123,11 +123,13 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     currentPolylines['mi_ruta_destino'] = this._miRutaDestino;
 
     //icono de inicio
-    final iconInicio = await getAssetImageMarker();
+    //final iconInicio = await getAssetImageMarker();
+    final iconInicio = await getMarkerInicioIcon(event.duracion.toInt());
     final iconoDestino = await getNetworkImageMarker();
 
     //marcadores
     final markerInicio = new Marker(
+      anchor: Offset(0.0, 1.0),
       markerId: MarkerId('inicio'),
       position: event.rutasCoordenadas[0],
       icon: iconInicio,
