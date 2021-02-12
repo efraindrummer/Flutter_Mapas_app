@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart' show Colors, Offset;
+import 'package:flutter/material.dart' show Colors;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mapas_app/themes/uber_map_theme.dart';
 import 'package:meta/meta.dart';
@@ -47,11 +47,7 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     final cameraUpdate = CameraUpdate.newLatLng(destino);
     this._mapController?.animateCamera(cameraUpdate);
   }
-  //pk.eyJ1IjoiZWZyYWluZHJ1bW1lciIsImEiOiJja2t2anByYmMxM2owMnduMHcybnFnemp4In0.AgMSElyiyQJ-pQm8WHe4CA
-
-  /* 
-  https://api.mapbox.com/geocoding/v5/mapbox.places/-91.81839813793664%2C18.64242146413602.json?access_token=pk.eyJ1Ijoic2VhcmNoLW1hY2hpbmUtdXNlci0xIiwiYSI6ImNrN2Y1Nmp4YjB3aG4zZ253YnJoY21kbzkifQ.JM5ZeqwEEm-Tonrk5wOOMw&cachebuster=1612727017559&autocomplete=true&proximity=-91.81839813793664%2C18.64242146413602&language=es
-   */
+  
   @override
   Stream<MapaState> mapEventToState( MapaEvent event ) async* {
 
@@ -153,10 +149,10 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
 
     Future.delayed(Duration(milliseconds: 300)).then(
       (value) {
-        _mapController.showMarkerInfoWindow(MarkerId('inicio'));
-        //_mapController.showMarkerInfoWindow(MarkerId('destino'));
+        //_mapController.showMarkerInfoWindow(MarkerId('inicio'));
+        _mapController.showMarkerInfoWindow(MarkerId('destino'));
       }
-    )
+    );
 
     yield state.copyWith(
       polylines: currentPolylines,
