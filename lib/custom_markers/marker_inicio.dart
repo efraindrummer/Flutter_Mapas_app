@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 class MarkerInicioPainter extends CustomPainter {
 
+  final int minutos;
+
+  MarkerInicioPainter(this.minutos); 
+
   @override
   void paint(Canvas canvas, Size size) {
 
@@ -44,7 +48,56 @@ class MarkerInicioPainter extends CustomPainter {
     final cajaNegra = Rect.fromLTWH(40, 20, 70, 80);
     canvas.drawRect(cajaNegra, paint);
 
+    //dibujar textos
+    TextSpan textSpan = new TextSpan(
+      style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w400),
+      text: '$minutos'
+    );
 
+    TextPainter textPainter = new TextPainter(
+      text: textSpan,
+      textDirection: TextDirection.ltr,
+      textAlign: TextAlign.center
+    )..layout(
+      maxWidth: 70,
+      minWidth: 70
+    );
+
+    textPainter.paint(canvas, Offset(40, 35));
+
+    //dibujar minutos
+    textSpan = new TextSpan(
+      style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w400),
+      text: 'Min'
+    );
+
+    textPainter = new TextPainter(
+      text: textSpan,
+      textDirection: TextDirection.ltr,
+      textAlign: TextAlign.center
+    )..layout(
+      maxWidth: 70,
+      minWidth: 70
+    );
+
+    textPainter.paint(canvas, Offset(40, 67));
+
+    //ubicacion
+    textSpan = new TextSpan(
+      style: TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.w400),
+      text: 'Mi ubicacion'
+    );
+
+    textPainter = new TextPainter(
+      text: textSpan,
+      textDirection: TextDirection.ltr,
+      textAlign: TextAlign.center
+    )..layout(
+      maxWidth: size.width - 130,
+    );
+
+    textPainter.paint(canvas, Offset(150, 50));
+    
   }
 
   @override
