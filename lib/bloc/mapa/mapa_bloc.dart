@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart' show Colors;
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:mapas_app/helpers/helpers.dart';
 import 'package:mapas_app/themes/uber_map_theme.dart';
 import 'package:meta/meta.dart';
 
@@ -121,10 +122,15 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     final currentPolylines = state.polylines;
     currentPolylines['mi_ruta_destino'] = this._miRutaDestino;
 
+    //icono de inicio
+    final iconInicio = await getAssetImageMarker();
+    final iconoDestino = await getNetworkImageMarker();
+
     //marcadores
     final markerInicio = new Marker(
       markerId: MarkerId('inicio'),
       position: event.rutasCoordenadas[0],
+      icon: iconInicio,
       infoWindow: InfoWindow(
         title: 'Mi ubicacion',
         snippet: 'Duracion recorrido: ${(event.duracion / 60).floor()} minutos',
@@ -134,9 +140,11 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     double kilometros = event.distancia / 1000;
     kilometros = (kilometros * 100).floor().toDouble();
     kilometros = kilometros / 100;
+
     final markerDestino = new Marker(
       markerId: MarkerId('destino'),
       position: event.rutasCoordenadas[event.rutasCoordenadas.length - 1],
+      icon: iconoDestino,
       infoWindow: InfoWindow(
         title: event.nombreDestino,
         snippet: 'Distancia aproximada: $kilometros Km',
@@ -150,7 +158,7 @@ class MapaBloc extends Bloc<MapaEvent, MapaState> {
     Future.delayed(Duration(milliseconds: 300)).then(
       (value) {
         //_mapController.showMarkerInfoWindow(MarkerId('inicio'));
-        _mapController.showMarkerInfoWindow(MarkerId('destino'));
+        //_mapController.showMarkerInfoWindow(MarkerId('destino'));
       }
     );
 
