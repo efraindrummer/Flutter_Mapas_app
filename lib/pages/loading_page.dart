@@ -59,13 +59,19 @@ class _LoadingPageState extends State<LoadingPage> with WidgetsBindingObserver{
     final gpsActivo = await Geolocator.GeolocatorPlatform.instance.isLocationServiceEnabled();
     
     if(permisoGPS && gpsActivo){
+    
       Navigator.pushReplacement(context, navegarMapaFedeIn(context, MapaPage()));
       return '';
+
     }else if(!permisoGPS){
+
       Navigator.pushReplacement(context, navegarMapaFedeIn(context, AccesoGpsPage()));
       return 'Es nesecario el permiso de el GPS';
+
     }else{
+
       return 'Active el GPS';
+      
     }
     
   }

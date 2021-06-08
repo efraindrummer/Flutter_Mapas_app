@@ -27,6 +27,7 @@ class _MapaPageState extends State<MapaPage> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: Stack(
         children: [
@@ -72,6 +73,7 @@ class _MapaPageState extends State<MapaPage> {
     );
 
     return BlocBuilder<MapaBloc, MapaState>(
+
       builder: (context, _ ) {
         return GoogleMap(
           initialCameraPosition: cameraPosition,
@@ -86,6 +88,7 @@ class _MapaPageState extends State<MapaPage> {
           },
         );
       },
+
     );
   }
 }
